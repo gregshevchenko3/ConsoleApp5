@@ -48,10 +48,13 @@ namespace Library
         public void DelRecord(StorageInfo obj)
         {
             int rec = _records.FindIndex(x => obj.Equals(x.Storage));
-            Record rc = _records[rec]; 
-            rc.ReturnBookDate = DateTime.Now;
-            _records.RemoveAt(rec);
-            _archive.Add(rc);
+            if (rec >= 0)
+            {
+                Record rc = _records[rec];
+                rc.ReturnBookDate = DateTime.Now;
+                _records.RemoveAt(rec);
+                _archive.Add(rc);
+            }
         }
         private string list_to_str(List<Record> list)
         {
